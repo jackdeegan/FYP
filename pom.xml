@@ -44,5 +44,10 @@
 			<artifactId>jersey-core</artifactId>
 			<version>1.19</version>
 		</dependency>
+		<dependency>
+    		<groupId>org.apache.tomcat</groupId>
+    		<artifactId>tomcat-jdbc</artifactId>
+    	<version>8.0.46</version>
+		</dependency>	
 	</dependencies>
 </project>
