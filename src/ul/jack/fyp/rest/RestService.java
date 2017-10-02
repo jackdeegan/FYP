@@ -4,7 +4,7 @@ package ul.jack.fyp.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+//import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import com.google.gson.Gson;
@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import ul.jack.fyp.model.UsersDao;
  
 @Path("/test")
-public class CtoFService {
+public class RestService {
 	@GET
 	@Produces("application/json")
 	public String convertCtoF() {
