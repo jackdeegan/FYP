@@ -25,6 +25,22 @@ public class DatabaseConnectionTest {
 		} catch(SQLException e) {
 			System.out.println(e);
 		}
+		
+		PreparedStatement ps2 = null;
+		ResultSet rs2 = null;
+		try (Connection conn = DBUtils.getTestConnection()) {
+			String strSql = "select * from countries where countryID = ?";
+			ps2 = conn.prepareStatement(strSql);
+			ps2.setInt(1, 94);
+			rs2 = ps2.executeQuery();
+			
+			while(rs2.next()) {
+				System.out.println(rs2.getString("countryName"));
+			}
+
+		} catch(SQLException e) {
+			System.out.println(e);
+		}
 	}
 	
 }
