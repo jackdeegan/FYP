@@ -19,7 +19,7 @@ public class DatabaseConnectionTest {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				System.out.println(rs.getString("email"));
+				System.out.println(rs.getString("fname"));
 			}
 
 		} catch(SQLException e) {

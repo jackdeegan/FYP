@@ -15,12 +15,12 @@ import ul.jack.fyp.model.UsersDao;
 public class RestService {
 	@GET
 	@Produces("application/json")
-	public String convertCtoF() {
+	public String restTest() {
 		UsersDao u = new UsersDao();
-		u.setFname("jason");
-		u.setLname("lastname");
+		u.setFname("jack");
+		u.setLname("deegan");
 		u.setStudentNum(123);
-		u.setEmail("jason@test.com");
+		u.setEmail("jack@test.com");
 		
 		Gson g = new Gson();
 		return g.toJson(u);
