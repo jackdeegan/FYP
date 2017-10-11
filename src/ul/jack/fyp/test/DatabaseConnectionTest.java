@@ -29,13 +29,13 @@ public class DatabaseConnectionTest {
 		PreparedStatement ps2 = null;
 		ResultSet rs2 = null;
 		try (Connection conn = DBUtils.getTestConnection()) {
-			String strSql = "select * from countries where countryID = ?";
+			String strSql = "select password from users where email = ?";
 			ps2 = conn.prepareStatement(strSql);
-			ps2.setInt(1, 94);
+			ps2.setString(1, "jack.deegan@gmail.com");
 			rs2 = ps2.executeQuery();
 			
 			while(rs2.next()) {
-				System.out.println(rs2.getString("countryName"));
+				System.out.println(rs2.getString("password"));
 			}
 
 		} catch(SQLException e) {
