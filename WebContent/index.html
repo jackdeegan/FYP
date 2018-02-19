@@ -1,20 +1,31 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Test</title>
+<title>Index</title>
 <script src="js/jquery-1.7.1.min.js"></script>
-	<script src="js/test.js"></script>
+	<script src="js/main.js"></script>
 </head>
 
 <body>
-	<div id="container">
-		<p class="greeting-email">The users email is: </p>
-		<p class="greeting-password">The users password is: </p>
-		<p class="greeting-fname">The users first name is: </p>
-		<p class="greeting-lname">The users last name is: </p> 
-		<p class="greeting-studentNum">The users student number is: </p>
-		<p class="greeting-countryID">The users country id is: </p>
-		<p class="greeting-address">The users address is: </p>
-	</div>
+	Email:<input type = "text" name = "email" id = "email" class = "text"/>
+	Password:<input type = "password" name = "password" id = "password" class = "text"/>
+	<input type = "submit" name = "btnLogin" id = "btnLogin" value = "Login" />
+	
+	<h1>Register</h1>
+	Email:<input type = "text" name = "rEmail" id = "rEmail" class = "text"/>
+	<br>
+	Password:<input type = "password" name = "rPassword" id = "rPassword" class = "text"/>
+	<br>
+	Confirm Password:<input type = "password" name = "cpassword" id = "cpassword" class = "text"/>
+	<br>
+	First:<input type = "text" name = "fname" id = "fname" class = "text"/>
+	<br>
+	Last:<input type = "text" name = "lname" id = "lname" class = "text"/>
+	<br>
+	Student No:<input type = "number" name = "studentNum" id = "studentNum" class = "text"/>
+	<br>
+	Address:<input type = "text" name = "address" id = "address" class = "text"/>
+	<br>
+	<input type = "submit" name = "btnReg" id = "btnReg" value = "Register"/>
 </body>
 </html>
