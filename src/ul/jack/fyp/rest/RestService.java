@@ -1,31 +1,45 @@
 package ul.jack.fyp.rest;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.google.gson.Gson;
+import ul.jack.fyp.model.Module;
+import ul.jack.fyp.model.Modules;
 
-import ul.jack.fyp.dao.DBUtils;
-import ul.jack.fyp.model.Result;
-import ul.jack.fyp.model.User;
-import ul.jack.fyp.model.UsersDao;
  
 @Path("REST")
 public class RestService {
 	
+	@POST
+	@Path("/confirmModules")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String[][] confirmModules(Modules userModules) throws IOException {
+			Module mod = new Module();
+			ArrayList<List<String>> details = mod.moduleDetails(userModules.getModules());
+			String[][] timetable = mod.generateTimetable(details);
+			return timetable;
+	}	
+	
+	@POST
+	@Path("/returnConflicts")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<String> returnConflicts(Modules userModules) throws IOException {
+			Module mod = new Module();
+			ArrayList<List<String>> details = mod.moduleDetails(userModules.getModules());
+			ArrayList<String> conflicts = mod.conflicts(details);
+			return conflicts;
+	}	
+	
+	/*
 	@GET
 	@Produces("application/json")
 	@Path("/authUser/{id}")
@@ -77,7 +91,7 @@ public class RestService {
 	
 	@GET
 	@Produces("application/json")
-	@Path("/getUserList")
+	@Path("/getUserList/{email}")
 	public String getUserList() {
 		UsersDao userDao = new UsersDao();
 		List<User> userList = userDao.findAll();
@@ -85,9 +99,28 @@ public class RestService {
 		return g.toJson(userList);
 	}
 	
+	@GET
+	@Produces("application/json")
+	@Path("/getCountryList")
+	public String getCountryList() {
+		CountryDao countryDao = new CountryDao();
+		List<Country> countryList = countryDao.findAll();
+		Gson g = new Gson();
+		return g.toJson(countryList);
+	}
+	
+	@GET
+	@Produces("application/json")
+	@Path("/getUserModules/{email}")
+	public String getUserModules(@PathParam("email") String email) {
+		ModulesDao modulesDao = new ModulesDao();
+		List<Modules> moduleList = modulesDao.findAll(email);
+		Gson g = new Gson();
+		return g.toJson(moduleList);
+	}
+	
 	@DELETE
 	@Path("/deleteUser/{email}")
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Result deleteUser(@PathParam("email") String email) {
 		Result result = null;
@@ -95,30 +128,18 @@ public class RestService {
 		PreparedStatement ps = null;
 		try {
 			conn = DBUtils.getTestConnection();
-			String sql = "DELETE FROM users WHERE email = ?";
+			String sql = "DELETE FROM users WHERE email =?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, email);
-			if(ps.execute()) {
-				result = new Result();
-				result.setCode("200");
-				result.setMessage("Success");
-				//Gson g = new Gson();
-				//return g.toJson(result);
-			}
-			else {
-				result = new Result();
-				result.setCode("401");
-				result.setMessage("Something went wrong");
-				//Gson g = new Gson();
-				//return g.toJson(result);
-				}
+			ps.execute();
+			result = new Result();
+			result.setCode("200");
+			result.setMessage("Success");
 			}
 			catch(SQLException e) {
 				result = new Result();
 				result.setCode("401");
 				result.setMessage("Something went wrong");
-				//Gson g = new Gson();
-				//return g.toJson(result);
 			} finally {
 				DBUtils.close(ps);
 				DBUtils.close(conn);
@@ -159,4 +180,44 @@ public class RestService {
 		}
 		return result;
 	}
+	
+	
+	@POST
+	@Path("/confirmModules/{email}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Result confirmModule(@PathParam("email") String email, Modules module) {
+		Result result = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = DBUtils.getTestConnection();
+			String sql = "INSERT INTO modules (email, module1, module2, module3, module4, module5, module6, module7, module8, module9, module10) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ps.setString(2,  module.getModule1());
+			ps.setString(3,  module.getModule2());
+			ps.setString(4,  module.getModule3());
+			ps.setString(5,  module.getModule4());
+			ps.setString(6, module.getModule5());
+			ps.setString(7,  module.getModule6());
+			ps.setString(8,  module.getModule7());
+			ps.setString(9,  module.getModule8());
+			ps.setString(10,  module.getModule9());
+			ps.setString(11,  module.getModule10());
+			ps.execute();
+			result = new Result();
+			result.setCode("200");
+			result.setMessage("Success");
+		} catch(SQLException e) {
+			result = new Result();
+			result.setCode("401");
+				result.setMessage("Something went wrong");
+		} finally {
+			DBUtils.close(ps);
+			DBUtils.close(conn);
+		}
+		return result;
+	}
+	*/
 }

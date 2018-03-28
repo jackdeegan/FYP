@@ -2,8 +2,6 @@ package ul.jack.fyp.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.google.gson.Gson;
-
 @XmlRootElement
 public class User {
 	private String email;
@@ -62,19 +60,5 @@ public class User {
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
-	
-	public static void main (String[] args) {
-		User u = new User();
-		u.setEmail("test@test.com");
-		u.setAddress("addr");
-		u.setCountryID(1);
-		u.setFname("post");
-		u.setLname("test");
-		u.setPassword("password");
-		u.setStudentNum(123456);
-		
-		Gson g = new Gson();
-		System.out.println(g.toJson(u));
 	}
 }
