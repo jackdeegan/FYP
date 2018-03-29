@@ -1,5 +1,5 @@
 body {
-    background-image: url(/pics/banner.jpg);
+    background-image: url(/pics/banner.jpg); 
     background-size: cover;
     background-repeat:   no-repeat;
     background-position: center center; 
@@ -69,6 +69,7 @@ table{
 	float: left;
 	opacity:0.9;
 	font-family: "Bookman Old Style";
+	background-color:#e3e3e3;
 }
 
 th
@@ -111,4 +112,21 @@ textarea{
 	opacity:0.9;
 	font-family:"Bookman Old Style";
 	text-transform:uppercase;
+}
+
+#save_image_locally{
+	position: absolute;
+	left: 0 ;
+	margin-left: 14%;
+	font-family:"Bookman Old Style";
+	background-color: #0099ff;
+    color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	padding: 5px 10px;
+}
+
+#save_image_locally:hover{
+	background-color: #008ae6;
 }

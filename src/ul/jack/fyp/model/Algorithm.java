@@ -15,7 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Module {
+public class Algorithm {
 
   private static String readAll(Reader rd) throws IOException {
 	  StringBuilder sb = new StringBuilder();
@@ -54,6 +54,16 @@ public class Module {
 		  for(int j = 0; j < count; j++) {
 			  JSONObject jsonObject = classes.getJSONObject(j);
 			  day = Integer.toString(jsonObject.getInt("day"));
+			  if(day.equals("1"))
+				  day = "MON";
+			  if(day.equals("2"))
+				  day = "TUE";
+			  if(day.equals("3"))
+				  day = "WED";
+			  if(day.equals("4"))
+				  day = "THU";
+			  if(day.equals("5"))
+				  day = "FRI";
 			  time = jsonObject.getString("time");
 			  times = time.split("-");
 			  startTime = times[0];
@@ -108,7 +118,6 @@ public class Module {
     		  }
 	      } 
 	  }
-	  
 	  conflicts = conflicts/2;
 	  return allConflicts;
   }
@@ -124,23 +133,23 @@ public class Module {
   		
   		for(int i = 0; i < details.size();i++) 
   		{
-  			if(details.get(i).get(1).equals("1")) {
+  			if(details.get(i).get(1).equals("MON")) {
   				day = 0;				//start time			//end time			   //module code		  //type				//room
   				addData(day, timetable, details.get(i).get(2), details.get(i).get(3), details.get(i).get(0), details.get(i).get(4), details.get(i).get(5));
   			}
-  			else if(details.get(i).get(1).equals("2")) {
+  			else if(details.get(i).get(1).equals("TUE")) {
   				day = 1;
   				addData(day, timetable, details.get(i).get(2), details.get(i).get(3), details.get(i).get(0), details.get(i).get(4), details.get(i).get(5));
   			}
-  			else if(details.get(i).get(1).equals("3")) {
+  			else if(details.get(i).get(1).equals("WED")) {
   				day = 2;
   				addData(day, timetable, details.get(i).get(2), details.get(i).get(3), details.get(i).get(0), details.get(i).get(4), details.get(i).get(5));
   			}
-  			else if(details.get(i).get(1).equals("4")) {
+  			else if(details.get(i).get(1).equals("THU")) {
   				day = 3;
   				addData(day, timetable, details.get(i).get(2), details.get(i).get(3), details.get(i).get(0), details.get(i).get(4), details.get(i).get(5));
   			}	  			
-  			else if(details.get(i).get(1).equals("5")) {
+  			else if(details.get(i).get(1).equals("FRI")) {
   				day = 4;
   				addData(day, timetable, details.get(i).get(2), details.get(i).get(3), details.get(i).get(0), details.get(i).get(4), details.get(i).get(5));
   			}
