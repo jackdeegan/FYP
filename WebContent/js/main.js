@@ -1,11 +1,9 @@
 $(document).ready(function () {
 	$('#btnModule').click(function() {
-		var modules = $("input[id='modules']").map(function()
-				{return $(this).val();	}).get();
+		   var modules = $("input[id='modules']").map(function()
+				   {return $(this).val();}).get();
 		
-		
-		
-		$.ajax({
+            $.ajax({
 				type: 'POST',
 				url: "http://localhost:8080/FYP/REST/confirmModules",
 				contentType: "application/json",
@@ -21,7 +19,7 @@ $(document).ready(function () {
 				}
 			})
 			
-		$.ajax({
+			$.ajax({
 				type: 'POST',
 				url: "http://localhost:8080/FYP/REST/returnConflicts",
 				contentType: "application/json",
@@ -67,7 +65,6 @@ $(document).ready(function () {
 	$('#save_image_locally').click(function(){
 		html2canvas($('#myTable')[0]).then(function(canvas) {
 	        var a = document.createElement('a');
-	        // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
 	        a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
 	        a.download = 'timetable.jpg';
 	        a.click();
