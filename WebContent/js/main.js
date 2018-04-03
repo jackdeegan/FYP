@@ -10,7 +10,7 @@ $(document).ready(function () {
 				dataType: 'json',
 				data: JSON.stringify({modules:modules}),
 				success: function(data, status, jqXHR){
-					alert("Modules confirmed");
+					//alert("Modules confirmed");
 					outputTimetable(data);
 					$( ".background" ).remove();
 				},
