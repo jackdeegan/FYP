@@ -20,8 +20,8 @@ $(document).ready(function () {
 			})
 			
 			$.ajax({
-				type: 'POST',	
-				url: "http://localhost:8080/FYP/REST/returnConflicts",
+				type: 'POST',	//type of HTTP method
+				url: "http://localhost:8080/FYP/REST/returnConflicts",	// URL data will be sent to
 				contentType: "application/json",
 				dataType: 'json',
 				data: JSON.stringify({modules:modules}),
@@ -71,7 +71,6 @@ $(document).ready(function () {
 		});
 	});
 });
-
 
 $(function () { 
 	$("td").dblclick(function () { 	// method to edit cells in table
