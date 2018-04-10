@@ -87,7 +87,7 @@ $(function () {
 			} }); 
 		$(this).children().first().blur(function(){ 
 			$(this).parent().text(OriginalContent); 
-			$(this).parent().removeClass("cellEditing"); 
+			$(this).parent().removeClass("cellEditing"); // remove class
 		});
 	}); 
 });
